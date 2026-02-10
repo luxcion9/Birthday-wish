@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Happy Birthday 🎉</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', system-ui, sans-serif;
+      height: 100vh;
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      overflow: hidden;
+      text-align: center;
+    }
+
+    .card {
+      background: rgba(0,0,0,0.35);
+      padding: 28px;
+      border-radius: 22px;
+      max-width: 360px;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.35);
+      animation: pop 1.2s ease;
+    }
+
+    @keyframes pop {
+      from { transform: scale(0.8); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+
+    h1 {
+      font-size: 2.2rem;
+      margin: 0 0 10px;
+      text-shadow: 0 4px 12px rgba(0,0,0,0.4);
+    }
+
+    .name {
+      color: #ffd369;
+      text-shadow: 0 0 12px rgba(255,211,105,0.8);
+    }
+
+    p {
+      font-size: 1.05rem;
+      line-height: 1.5;
+      margin: 12px 0 18px;
+    }
+
+    .typing {
+      min-height: 3em;
+      font-style: italic;
+      opacity: 0.95;
+    }
+
+    button {
+      border: none;
+      border-radius: 30px;
+      padding: 12px 18px;
+      font-size: 0.95rem;
+      font-weight: 700;
+      cursor: pointer;
+      margin: 6px;
+      background: #fff;
+      color: #6b4eff;
+      transition: transform .2s, box-shadow .2s;
+    }
+
+    button:hover {
+      transform: translateY(-2px) scale(1.05);
+      box-shadow: 0 10px 18px rgba(0,0,0,0.25);
+    }
+
+    .confetti {
+      position: absolute;
+      width: 8px;
+      height: 8px;
+      top: -10px;
+      animation: fall linear infinite;
+    }
+
+    @keyframes fall {
+      to { transform: translateY(110vh) rotate(360deg); }
+    }
+
+    .footer {
+      margin-top: 10px;
+      font-size: 0.8rem;
+      opacity: 0.8;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="card">
+    <h1>🎉 Happy Birthday, <span class="name">idontknowmyname</span>! 🎂</h1>
+
+    <div class="typing" id="typing"></div>
+
+    <p>
+      May your day be full of smiles, surprises,  
+      and memories that last forever ✨💖
+    </p>
+
+    <button onclick="celebrate()">🎊 Celebrate</button>
+    <button onclick="toggleMusic()">🎵 Music</button>
+
+    <div class="footer">Made with ❤️ just for you</div>
+  </div>
+
+  <!-- Music (royalty-free style placeholder) -->
+  <audio id="music" loop>
+    <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+  </audio>
+
+  <script>
+    // Typing effect
+    const text =
+      "Hey idontknowmyname 💫 Today is all about YOU! " +
+      "Stay awesome, stay crazy, and keep shining 🌟";
+    let i = 0;
+    function type() {
+      if (i < text.length) {
+        document.getElementById("typing").innerHTML += text.charAt(i);
+        i++;
+        setTimeout(type, 50);
+      }
+    }
+    type();
+
+    // Confetti
+    function celebrate() {
+      for (let i = 0; i < 70; i++) {
+        const c = document.createElement("div");
+        c.className = "confetti";
+        c.style.left = Math.random() * 100 + "vw";
+        c.style.background =
+          ["#ffd369", "#ff6f91", "#7cf3ff", "#baffc9"][Math.floor(Math.random()*4)];
+        c.style.animationDuration = (Math.random()*3 + 2) + "s";
+        document.body.appendChild(c);
+        setTimeout(() => c.remove(), 5000);
+      }
+      alert("🎉 Enjoy your special day, idontknowmyname! 🎉");
+    }
+
+    // Music toggle
+    function toggleMusic() {
+      const m = document.getElementById("music");
+      if (m.paused) m.play();
+      else m.pause();
+    }
+  </script>
+
+</body>
+</html>
